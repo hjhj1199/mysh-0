@@ -9,19 +9,26 @@ void mysh_parse_command(const char* command,
     int cnt=0;
 
     strcpy(usercommand,command);
-  
+
     *argv=(char**)malloc(4*sizeof(char));
 
     token=strtok(usercommand," \n\t");
-
+    
     do
     {
-        *(*argv+cnt)=(char*)malloc(strlen(token+1)*sizeof(char));
+        if (token==NULL) break;
+        *(*argv+cnt)=(char*)malloc((strlen(token)+1)*sizeof(char));
         strcpy(*(*argv+cnt),token);
         cnt++;
         token=strtok(NULL," \n\t");
-        if (token==NULL) break;
     }while(1);
-    
+
+    if (cnt==0)
+    {
+        *(*argv+cnt)=(char*)malloc(sizeof(char));
+        strcpy(*(*argv+cnt),"");
+        cnt++;
+    }
+
     *argc=cnt;
 }
