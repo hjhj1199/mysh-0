@@ -25,7 +25,7 @@ int do_pwd(int argc, char** argv) {
 
 int validate_cd_argv(int argc, char** argv) {
   // TODO: Fill it!
-  if ((argc==2 && strcmp(argv[0],"cd")==0) || (argc==2 && strcmp(argv[0],"cd")==0)) return 1;
+  if ((argc==2 && strcmp(argv[0],"cd")==0 && strcmp(argv[1],".")==0) || (argc==2 && strcmp(argv[0],"cd")==0 && strcmp(argv[1],"..")==0) || (argc==2 && strcmp(argv[0],"cd")==0 && access(argv[1],F_OK)==0)) return 1;
   return 0;
 }
 
