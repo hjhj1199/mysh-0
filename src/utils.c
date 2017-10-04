@@ -9,8 +9,8 @@ void mysh_parse_command(const char* command,
     int cnt=0;
 
     strcpy(usercommand,command);
-
-    *argv=(char**)malloc(512*sizeof(char));
+    *argv=(char**)malloc(100*sizeof(char*));
+//    *argv=(char**)malloc(512*sizeof(char));
     token=strtok(usercommand," \n\t");
     
     do
