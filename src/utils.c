@@ -10,7 +10,7 @@ void mysh_parse_command(const char* command,
 
     strcpy(usercommand,command);
 
-    *argv=(char**)malloc(100*sizeof(char));
+    *argv=(char**)malloc(512*sizeof(char));
     token=strtok(usercommand," \n\t");
     
     do
