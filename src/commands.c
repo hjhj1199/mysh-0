@@ -1,6 +1,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <sys/stat.h>
 #include "commands.h"
 
 int do_cd(int argc, char** argv) {
@@ -25,7 +26,10 @@ int do_pwd(int argc, char** argv) {
 
 int validate_cd_argv(int argc, char** argv) {
   // TODO: Fill it!
-  if (argc==2 && strcmp(argv[0],"cd")==0 &&access(argv[1],F_OK)==0) return 1;
+  struct stat dir;
+ 
+  if (argc==2 && strcmp(argv[0],"cd")==0 && access(argv[1],F_OK | R_OK)==0 && stat(argv[1],&dir)==0 && S_ISDIR(dir.st_mode)==1) return 1;
+
   return 0;
 }
 
